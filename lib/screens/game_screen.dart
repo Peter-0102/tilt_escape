@@ -19,7 +19,7 @@ class GameScreen extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/back.jpg"), // 👈 tu imagen
+                image: AssetImage("assets/images/back.png"), // 👈 tu imagen
                 fit: BoxFit.cover,
               ),
             ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:acelerometro_game/game/utils/sprite_loader.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:sensors_plus/sensors_plus.dart';
@@ -7,7 +6,7 @@ import 'level_data.dart';
 import 'components/player.dart';
 import 'components/goal.dart';
 import 'components/trap.dart';
-import 'package:flutter/services.dart';
+
 
 class MyGame extends FlameGame {
 
@@ -34,7 +33,7 @@ class MyGame extends FlameGame {
   Future<void> onLoad() async {
 
     // 🔹 Cargar fondo
-    final bgSprite = await loadSprite('back.jpg');
+    final bgSprite = await loadSprite('back.png');
 
     background = SpriteComponent()
       ..sprite = bgSprite

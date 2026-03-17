@@ -13,7 +13,7 @@ class MenuScreen extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/back.jpg"), // 👈 cambia aquí tu imagen
+                image: AssetImage("assets/images/back.png"), 
                 fit: BoxFit.cover,
               ),
             ),
@@ -45,7 +45,7 @@ class MenuScreen extends StatelessWidget {
                   context,
                   text: "Nivel 1",
                   level: 0,
-                  colors: [Colors.blue, Colors.cyan],
+                  colors: [const Color.fromARGB(255, 194, 124, 33), Colors.cyan],
                 ),
 
                 const SizedBox(height: 20),
@@ -54,7 +54,7 @@ class MenuScreen extends StatelessWidget {
                   context,
                   text: "Nivel 2",
                   level: 1,
-                  colors: [Colors.purple, Colors.deepPurpleAccent],
+                  colors: [Colors.purple, const Color.fromARGB(255, 12, 128, 206)],
                 ),
               ],
             ),
