@@ -7,39 +7,101 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Seleccionar Nivel")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            ElevatedButton(
-              child: const Text("Nivel 1"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const GameScreen(level: 0,),
-                  ),
-                );
-              },
+      body: Stack(
+        children: [
+          // 🔹 Fondo con imagen (puedes cambiarla)
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/back.jpg"), // 👈 cambia aquí tu imagen
+                fit: BoxFit.cover,
+              ),
             ),
+          ),
 
-            const SizedBox(height: 20),
+          // 🔹 Overlay oscuro para mejor contraste
+          Container(
+            color: Colors.black.withOpacity(0.5),
+          ),
 
-            ElevatedButton(
-              child: const Text("Nivel 2"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const GameScreen(level: 1,),
+          // 🔹 Contenido principal
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Seleccionar Nivel",
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 2,
                   ),
-                );
-              },
-            ),
+                ),
 
+                const SizedBox(height: 40),
+
+                _buildLevelButton(
+                  context,
+                  text: "Nivel 1",
+                  level: 0,
+                  colors: [Colors.blue, Colors.cyan],
+                ),
+
+                const SizedBox(height: 20),
+
+                _buildLevelButton(
+                  context,
+                  text: "Nivel 2",
+                  level: 1,
+                  colors: [Colors.purple, Colors.deepPurpleAccent],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLevelButton(
+    BuildContext context, {
+    required String text,
+    required int level,
+    required List<Color> colors,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => GameScreen(level: level),
+          ),
+        );
+      },
+      child: Container(
+        width: 220,
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: colors),
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: colors.last.withOpacity(0.6),
+              blurRadius: 10,
+              offset: const Offset(0, 5),
+            ),
           ],
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );

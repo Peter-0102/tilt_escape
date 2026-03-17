@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:acelerometro_game/game/utils/sprite_loader.dart';
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'level_data.dart';
@@ -7,7 +8,6 @@ import 'components/player.dart';
 import 'components/goal.dart';
 import 'components/trap.dart';
 import 'package:flutter/services.dart';
-
 
 class MyGame extends FlameGame {
 
@@ -27,8 +27,21 @@ class MyGame extends FlameGame {
 
   bool finished = false;
 
+  // 🔹 Fondo
+  SpriteComponent? background;
+
   @override
   Future<void> onLoad() async {
+
+    // 🔹 Cargar fondo
+    final bgSprite = await loadSprite('back.jpg');
+
+    background = SpriteComponent()
+      ..sprite = bgSprite
+      ..position = Vector2.zero()
+      ..priority = -1; // 👈 MUY IMPORTANTE (al fondo)
+
+    add(background!);
 
 
     final level = levels[levelIndex];
@@ -36,7 +49,6 @@ class MyGame extends FlameGame {
     player = Player(level.playerStart);
     goal = Goal(level.goalPosition);
 
-  
     add(player);
     add(goal);
 
@@ -49,9 +61,16 @@ class MyGame extends FlameGame {
     sensorSub = accelerometerEvents.listen((event) {
       accelX = accelX * 0.8 + event.x * 0.2;
       accelY = accelY * 0.8 + event.y * 0.2;
-
     });
   }
+
+  // 🔹 Ajustar tamaño del fondo automáticamente
+@override
+void onGameResize(Vector2 canvasSize) {
+  super.onGameResize(canvasSize);
+
+  background?.size = canvasSize; // 👈 seguro
+}
   @override
   void update(double dt) {
     super.update(dt);
