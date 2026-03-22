@@ -42,3 +42,40 @@ Cada nivel incrementa la dificultad, poniendo a prueba la precisión y control d
 ---
 
 ## 📂 Estructura del proyecto
+
+lib/
+│
+├── game/
+│ ├── my_game.dart # Lógica principal del juego
+│ ├── level_data.dart # Definición de niveles
+│ └── components/
+│ ├── player.dart
+│ ├── goal.dart
+│ └── trap.dart
+│
+├── ui/
+│ ├── menu_screen.dart
+│ ├── game_screen.dart
+│ ├── victory_overlay.dart
+│ └── game_over_overlay.dart
+
+
+---
+
+## 🎮 Cómo jugar
+
+1. Inicia el juego
+2. Selecciona un nivel
+3. Inclina tu dispositivo para mover al jugador
+4. Evita las trampas
+5. Llega a la meta para ganar
+
+---
+
+## ⚙️ Instalación
+
+```bash
+git clone https://github.com/tu-usuario/tu-repositorio.git
+cd tu-repositorio
+flutter pub get
+flutter run
